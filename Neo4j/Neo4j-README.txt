@@ -14,7 +14,7 @@ virtualenv -p python3 ./venv
 source ./venv/bin/activate
 
 # Install project python requirements
-python3 -m pip install -r requirements.txt
+python3 -m pip install -r Neo4j/requirements.txt
 ```
 
 ### To load data
