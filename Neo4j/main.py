@@ -19,26 +19,24 @@ class AirlinesApp(object):
     def _create_constraints(self):
         with self.driver.session() as session:
             #Define the CONSTRAINTS for the airlines data
-            session.run("CREATE CONSTRAINT unique_flight IF NOT EXISTS FOR (f:Flight) REQUIRE f.flight_ID IS UNIQUE")
+            session.run("CREATE CONSTRAINT unique_flight IF NOT EXISTS FOR (f:Flight) REQUIRE (f.airline, f.year, f.month, f.day) IS UNIQUE")
             session.run("CREATE CONSTRAINT unique_airport IF NOT EXISTS FOR (a:Airport) REQUIRE a.airport_name IS UNIQUE")
             session.run("CREATE CONSTRAINT unique_date IF NOT EXISTS FOR (d:Date) REQUIRE (d.day, d.month, d.year, d.hour) IS UNIQUE")
-            session.run("CREATE CONSTRAINT unique_passenger IF NOT EXISTS FOR (p:Passenger) REQUIRE p.passenger_ID IS UNIQUE")
+            session.run("CREATE CONSTRAINT unique_passenger IF NOT EXISTS FOR (p:Passenger) REQUIRE (p.age, p.gender, p.reason, p.stay, p.transit) IS UNIQUE")
+            session.run("CREATE CONSTRAINT unique_airline IF NOT EXISTS FOR (ai:Airline) REQUIRE ai.airline_name IS UNIQUE")
             
     """
-    Flight -> airline, flight_ID
+    Flight -> airline
     Airport -> airport_name
     Date -> day, month, year, hour
-    Passenger -> age, gender, reason, stay, transit, passenger_ID
+    Passenger -> age, gender, reason, stay, transit
     
     """  
-
-
-
-    def _create_flight_node(self, flight_ID, airline):
+    def _create_airline_node(self, airline_name):
         with self.driver.session() as session:
             try:
-                session.run("MERGE (f:Flight {flight_ID: $flight_ID, airline: $airline})", 
-                            flight_ID=flight_ID, airline=airline)
+                session.run("MERGE (ai:Airline {airline_name: $airline_name})", 
+                            airline_name=airline_name)
             except ConstraintError:
                 pass
 
@@ -52,6 +50,15 @@ class AirlinesApp(object):
                 pass
 
 
+    def _create_flight_node(self, airline, year, month, day):
+        with self.driver.session() as session:
+            try:
+                session.run("MERGE (f:Flight {airline: $airline, date: date($year + '-' + $month + '-' + $day)})",
+                            airline=airline, year=year, month=month, day=day)
+            except ConstraintError:
+                pass
+
+
     def _create_date_node(self, year, month, day):
         with self.driver.session() as session:
             try:
@@ -61,59 +68,76 @@ class AirlinesApp(object):
                 pass
 
 
-    def _create_passenger_node(self, passenger_ID, age, gender, reason, stay, transit):
+    def _create_passenger_node(self, age, gender, reason, stay, transit):
         with self.driver.session() as session:
             try:
-                session.run("MERGE (p:Passenger {passenger_ID: $passenger_ID, age: $age, gender: $gender, reason: $reason, stay:$stay, transit:$transit})", 
-                            passenger_ID=passenger_ID, age=age, gender=gender, reason=reason, stay=stay, transit=transit)
+                session.run("MERGE (p:Passenger {age: $age, gender: $gender, reason: $reason, stay:$stay, transit:$transit})", 
+                            age=age, gender=gender, reason=reason, stay=stay, transit=transit)
             except ConstraintError:
                 pass
 
 
-    def _create_FROM_relationship(self, flight, airport):
+    def _create_FROM_relationship(self, year, month, day, airport, airline):
         with self.driver.session() as session:
             session.run("""
-                MATCH (f:Flight {flight_ID: $flight_ID}), (a:Airport {airport_name: $airport_name})
+                MATCH (f:Flight {date:date($year + '-' + $month + '-' + $day), airline:$airline})
+                MATCH (a:Airport {airport_name:$airport_name})
                 MERGE (f)-[r:FROM]->(a)
-                RETURN type(r)""", flight_ID=flight, airport_name=airport)
+                RETURN type(r)""", year=year, month=month, day=day, airport_name=airport, airline=airline)
 
 
-    def _create_TO_relationship(self, flight, airport):
+    def _create_TO_relationship(self, year, month, day, airport, airline):
         with self.driver.session() as session:
             session.run("""
-                MATCH (f:Flight {flight_ID: $flight_ID}), (a:Airport {airport_name: $airport_name})
+                MATCH (f:Flight {date:date($year + '-' + $month + '-' + $day), airline:$airline})
+                MATCH (a:Airport {airport_name:$airport_name})
                 MERGE (f)-[r:TO]->(a)
-                RETURN type(r)""", flight_ID=flight, airport_name=airport)
+                RETURN type(r)""", year=year, month=month, day=day, airport_name=airport, airline=airline)
             
 
-    def _create_ON_DATE_relationship(self, flight, year, month, day):
+    def _create_ON_DATE_relationship(self, year, month, day):
         with self.driver.session() as session:
             session.run("""
-                MATCH (f:Flight {flight_ID: $flight_ID}), (d:Date {year: $year, month: $month, day: $day})
+                MATCH (f:Flight {date:date($year + '-' + $month + '-' + $day)})
+                MERGE (d:Date {year:$year, month:$month, day:$day})
                 MERGE (f)-[r:ON_DATE]->(d)
-                RETURN type(r)""", flight_ID=flight, year=year, month=month, day=day)
+                RETURN type(r)""", year=year, month=month, day=day)
 
 
-    def _create_BOARDED_relationship(self, passenger, flight):
+    def _create_BOARDED_relationship(self, age, gender, reason, stay, transit, year, month, day):
         with self.driver.session() as session:
             session.run("""
-                MATCH (p:Passenger{passenger_ID:$passenger_ID}), (f:Flight{flight_ID:$flight_ID})
-                MERGE (p)-[r:BOARDED]->(f)
-                RETURN type(r)""", passenger_ID=passenger, flight_ID=flight)
+                MATCH (f:Flight {date:date($year + '-' + $month + '-' + $day)})
+                MERGE (p:Passenger {age:$age, gender:$gender, reason:$reason, stay:$stay, transit:$transit})
+                MERGE (f)-[r:BOARDED]->(p)
+                RETURN type(r)""", age=age, gender=gender, reason=reason, stay=stay, transit=transit, year=year, month=month, day=day)
+            
+
+    def _create_OPERATE_AT_relationship(self, airline, airport):
+        with self.driver.session() as session:
+            session.run("""
+                MATCH (a:Airline {airline_name:$airline_name})
+                MATCH (ap:Airport {airport_name:$airport_name})
+                MERGE (a)-[r:OPERATES_AT]->(ap)
+                RETURN type(r)
+            """, airline_name=airline, airport_name=airport)
             
 
     def init(self, source):
             with open(source, newline='') as csv_file:
                 reader = csv.DictReader(csv_file,  delimiter=',')
                 for r in reader:
+                    self._create_airline_node(r["airline"])
                     self._create_airport_node(r["from"])
-                    self._create_flight_node(r["id"], r["airline"])
+                    self._create_flight_node(r["airline"], r["year"], r["month"], r["day"])
                     self._create_date_node(r["year"], r["month"], r["day"])
-                    self._create_passenger_node(r["passenger_id"], r["age"], r["gender"], r["reason"], r["stay"], r["transit"])
-                    self._create_FROM_relationship(r["id"], r["from"])
-                    self._create_TO_relationship(r["id"], r["to"])
-                    self._create_ON_DATE_relationship(r["id"], r["year"], r["month"], r["day"])
-                    self._create_BOARDED_relationship(r["passenger_id"], r["id"]) 
+                    self._create_passenger_node(r["age"], r["gender"], r["reason"], r["stay"], r["transit"])
+                    self._create_OPERATE_AT_relationship(r["airline"], r["from"])
+                    self._create_FROM_relationship(r["year"], r["month"], r["day"], r["from"], r["airline"])
+                    self._create_TO_relationship(r["year"], r["month"], r["day"], r["to"], r["airline"])
+                    self._create_ON_DATE_relationship(r["year"], r["month"], r["day"])
+                    self._create_BOARDED_relationship(r["age"], r["gender"], r["reason"], r["stay"], r["transit"], r["year"], r["month"], r["day"]) 
+
 
 if __name__ == "__main__":
     data = "data/flight_passengers.csv"
