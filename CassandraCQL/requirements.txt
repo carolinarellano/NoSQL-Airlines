@@ -1,0 +1,4 @@
+cassandra-driver
+time_uuid
+colorama
+tabulate
