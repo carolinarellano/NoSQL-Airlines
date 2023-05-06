@@ -7,8 +7,7 @@ ITESO
 import argparse
 import csv
 import datetime
-import random
-import string
+
 from random import choice, randint, randrange
 
 
@@ -28,28 +27,13 @@ def random_date(start_date, end_date):
     rand_date = start_date + datetime.timedelta(days=random_number_of_days)
     return rand_date
 
-def random_ID():
-    length = 8
-    letters_and_digits = string.ascii_uppercase + string.digits
-    code = ''.join(random.choice(letters_and_digits) for i in range(length))
-    id = "FL" + code
-    return id
-
-def random_passengerID():
-    length = 6
-    letters_and_digits = string.ascii_uppercase + string.digits
-    code = ''.join(random.choice(letters_and_digits) for i in range(length))
-    id = "PASS" + code
-    return id
 
 def generate_dataset(output_file, rows):
     with open(output_file, "w") as fd:
-        fieldnames = ["id" ,"airline" , "from" ,"to", "day", "month", "year","age", "gender", "reason", "stay", "transit", "connection", "wait", "passenger_id"]
+        fieldnames = ["airline", "de" ,"hacia", "day", "month", "year","age", "gender", "reason", "stay", "transit", "connection", "wait"]
         fp_dict = csv.DictWriter(fd, fieldnames=fieldnames)
         fp_dict.writeheader()
         for i in range(rows):
-            passenger_ID = random_passengerID()
-            flight_id = random_ID()
             from_airport = choice(airports)
             to_airport = choice(airports)
             while from_airport == to_airport:
@@ -70,10 +54,9 @@ def generate_dataset(output_file, rows):
                 wait = 0
                 
             line = {
-                "id": flight_id,
                 "airline": choice(airlines),
-                "from":  from_airport,
-                "to":  to_airport,
+                "de":  from_airport,
+                "hacia":  to_airport,
                 "day": date.day,
                 "month": date.month,
                 "year": date.year,
@@ -84,7 +67,6 @@ def generate_dataset(output_file, rows):
                 "transit": transit,
                 "connection": connection,
                 "wait": wait,
-                "passenger_id": passenger_ID,
             }
             fp_dict.writerow(line)
 
@@ -95,7 +77,7 @@ if __name__ == "__main__":
     parser.add_argument("-o", "--output",
             help="Specify the output filename of your csv, defaults to: flight_passengers.csv", default="flight_passengers.csv")
     parser.add_argument("-r", "--rows",
-            help="Amount of random generated entries for the dataset, defaults to: 100", type=int, default=100)
+            help="Amount of random generated entries for the dataset, defaults to: 100", type=int, default=500)
 
     args = parser.parse_args()
     
