@@ -30,7 +30,7 @@ def random_date(start_date, end_date):
 
 def generate_dataset(output_file, rows):
     with open(output_file, "w") as fd:
-        fieldnames = ["airline", "de" ,"hacia", "day", "month", "year","age", "gender", "reason", "stay", "transit", "connection", "wait"]
+        fieldnames = ["airline" , "from" ,"to", "day", "month", "year","age", "gender", "reason", "stay", "transit", "connection", "wait"]
         fp_dict = csv.DictWriter(fd, fieldnames=fieldnames)
         fp_dict.writeheader()
         for i in range(rows):
@@ -55,8 +55,8 @@ def generate_dataset(output_file, rows):
                 
             line = {
                 "airline": choice(airlines),
-                "de":  from_airport,
-                "hacia":  to_airport,
+                "from":  from_airport,
+                "to":  to_airport,
                 "day": date.day,
                 "month": date.month,
                 "year": date.year,
@@ -77,7 +77,7 @@ if __name__ == "__main__":
     parser.add_argument("-o", "--output",
             help="Specify the output filename of your csv, defaults to: flight_passengers.csv", default="flight_passengers.csv")
     parser.add_argument("-r", "--rows",
-            help="Amount of random generated entries for the dataset, defaults to: 100", type=int, default=500)
+            help="Amount of random generated entries for the dataset, defaults to: 100", type=int, default=200)
 
     args = parser.parse_args()
     

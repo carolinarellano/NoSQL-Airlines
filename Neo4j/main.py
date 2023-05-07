@@ -29,7 +29,7 @@ class AirlinesApp(object):
     Flight -> airline
     Airport -> airport_name
     Date -> day, month, year, hour
-    Passenger -> age, gender, reason, stay, transit
+    Passenger -> age, gender, reason, stay, transit, wait
     
     """  
     def _create_airline_node(self, airline_name):
@@ -68,11 +68,11 @@ class AirlinesApp(object):
                 pass
 
 
-    def _create_passenger_node(self, age, gender, reason, stay, transit):
+    def _create_passenger_node(self, age, gender, reason, stay, transit, wait):
         with self.driver.session() as session:
             try:
-                session.run("MERGE (p:Passenger {age: $age, gender: $gender, reason: $reason, stay:$stay, transit:$transit})", 
-                            age=age, gender=gender, reason=reason, stay=stay, transit=transit)
+                session.run("MERGE (p:Passenger {age: $age, gender: $gender, reason: $reason, stay:$stay, transit:$transit, wait:$wait})", 
+                            age=age, gender=gender, reason=reason, stay=stay, transit=transit, wait=wait)
             except ConstraintError:
                 pass
 
@@ -121,9 +121,30 @@ class AirlinesApp(object):
                 MERGE (a)-[r:OPERATES_AT]->(ap)
                 RETURN type(r)
             """, airline_name=airline, airport_name=airport)
+
+
+    def _wait_count(self, age, wait, airport, airports):
+        with self.driver.session() as session:
+            result = session.run(
+                """
+                MATCH (p:Passenger)
+                WHERE p.age=$age AND p.wait = $wait
+                RETURN p.age, p.wait, COUNT(p) AS count
+                ORDER BY p.age, p.wait
+                """, age=age, wait=wait
+            )
+            for record in result:
+                if int(record['p.wait']) > 0:
+                    print(f"{record['p.age']}  {record['p.wait']} {record['count']} {airport}")
+                    if airport in airports:
+                        airports[airport] += int(record['count'])
+                    else:
+                        airports[airport] = int(record['count'])
             
+                
 
     def init(self, source):
+            airports = {}
             with open(source, newline='') as csv_file:
                 reader = csv.DictReader(csv_file,  delimiter=',')
                 for r in reader:
@@ -131,12 +152,16 @@ class AirlinesApp(object):
                     self._create_airport_node(r["from"])
                     self._create_flight_node(r["airline"], r["year"], r["month"], r["day"])
                     self._create_date_node(r["year"], r["month"], r["day"])
-                    self._create_passenger_node(r["age"], r["gender"], r["reason"], r["stay"], r["transit"])
+                    self._create_passenger_node(r["age"], r["gender"], r["reason"], r["stay"], r["transit"], r["wait"])
                     self._create_OPERATE_AT_relationship(r["airline"], r["from"])
                     self._create_FROM_relationship(r["year"], r["month"], r["day"], r["from"], r["airline"])
                     self._create_TO_relationship(r["year"], r["month"], r["day"], r["to"], r["airline"])
                     self._create_ON_DATE_relationship(r["year"], r["month"], r["day"])
-                    self._create_BOARDED_relationship(r["age"], r["gender"], r["reason"], r["stay"], r["transit"], r["year"], r["month"], r["day"]) 
+                    self._create_BOARDED_relationship(r["age"], r["gender"], r["reason"], r["stay"], r["transit"], r["year"], r["month"], r["day"])
+                    self._create_OPERATE_AT_relationship(r["airline"], r["to"])
+                    self._wait_count(r["age"], r["wait"], r["from"], airports)
+            print(f"Airport frequency: {airports}")
+
 
 
 if __name__ == "__main__":
