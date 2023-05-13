@@ -1,0 +1,101 @@
+id,airline,From,to,day,month,year,age,gender,reason,stay,transit,connection,wait
+FLN3MPOD8S,Volaris,PDX,SJC,11,March,2022,38,unspecified,Business/Work,Hotel,Airport cab,False,0
+FLMRVS9JPC,Delta Airlines,PDX,LAX,8,May,2015,12,undisclosed,On vacation/Pleasure,Home,,True,243
+FLSMPX53JD,Volaris,JFK,PDX,19,October,2019,80,unspecified,Business/Work,Hotel,Own car,False,0
+FLCU6DDNSX,American Airlines,PDX,SJC,13,May,2019,60,male,On vacation/Pleasure,Short-term homestay,,True,242
+FL9OXCRQ6J,Delta Airlines,SJC,JFK,4,October,2018,63,female,On vacation/Pleasure,Friend/Family,Public Transportation,False,0
+FLPQ3E15NE,American Airlines,JFK,SJC,9,March,2019,46,female,On vacation/Pleasure,Friend/Family,,True,643
+FLOLZVIVTQ,Delta Airlines,PDX,GDL,16,January,2016,50,female,Back Home,Home,Public Transportation,False,0
+FLUD5TSLAH,Alaska,SJC,LAX,8,April,2014,17,undisclosed,Back Home,Home,,False,0
+FL6ECX025T,Volaris,LAX,GDL,12,June,2021,40,female,Back Home,Home,,False,0
+FL1XJ5YMF0,American Airlines,GDL,LAX,20,July,2019,73,female,Business/Work,Hotel,Own car,False,0
+FL3TSQ25ID,American Airlines,LAX,SJC,27,May,2013,70,unspecified,On vacation/Pleasure,Friend/Family,Own car,False,0
+FLZR7E45ZL,American Airlines,JFK,PDX,31,October,2019,82,female,Business/Work,Home,Pickup,False,0
+FLROPG2DCB,Delta Airlines,GDL,SJC,9,August,2014,62,female,Business/Work,Hotel,Mobility as a service,False,0
+FLJIH3KIS0,Delta Airlines,PDX,SJC,2,May,2014,35,female,Back Home,Home,Own car,False,0
+FL8X0FBTXU,Aeromexico,GDL,SJC,5,November,2015,76,unspecified,Business/Work,Hotel,Car rental,False,0
+FLXG968082,Aeromexico,JFK,GDL,28,November,2019,39,unspecified,Back Home,Home,Mobility as a service,False,0
+FLFB9EN6QW,Volaris,LAX,GDL,8,August,2022,82,undisclosed,Business/Work,Friend/Family,Public Transportation,False,0
+FLGGXLAZFH,Volaris,GDL,LAX,5,February,2021,86,undisclosed,On vacation/Pleasure,Friend/Family,Pickup,False,0
+FLLS6MXAVI,Alaska,SJC,GDL,29,March,2015,47,undisclosed,On vacation/Pleasure,Short-term homestay,Car rental,False,0
+FLOLXWLEYT,Delta Airlines,SJC,JFK,16,July,2013,29,female,Back Home,Home,Public Transportation,False,0
+FLD3TEP9P4,Alaska,LAX,JFK,2,June,2019,88,male,Business/Work,Friend/Family,,True,421
+FLDHB454BB,Aeromexico,PDX,JFK,15,June,2015,81,undisclosed,Back Home,Home,,False,0
+FLL72N1IL0,American Airlines,SJC,JFK,23,May,2017,23,male,On vacation/Pleasure,Home,,True,618
+FLZXTLWL3Y,Delta Airlines,JFK,PDX,15,October,2015,22,unspecified,Back Home,Home,Airport cab,False,0
+FLTNSOR4T6,Volaris,GDL,SJC,21,August,2021,69,female,Back Home,Home,Car rental,False,0
+FL8XYET0IW,American Airlines,LAX,PDX,4,October,2018,1,female,On vacation/Pleasure,Short-term homestay,,True,245
+FLTG9Y1UY7,American Airlines,PDX,LAX,25,May,2019,67,male,Business/Work,Friend/Family,Airport cab,False,0
+FLE1NLR7G9,Alaska,LAX,SJC,23,April,2019,8,male,On vacation/Pleasure,Home,,True,707
+FL5DASEF86,Delta Airlines,JFK,GDL,9,November,2018,40,female,On vacation/Pleasure,Short-term homestay,,True,141
+FL5CNVDKGW,Volaris,PDX,SJC,7,November,2014,63,undisclosed,Back Home,Home,,False,0
+FLHAPEAZFH,Delta Airlines,GDL,LAX,27,March,2017,68,undisclosed,Back Home,Home,,False,0
+FL79HVJKUY,American Airlines,PDX,LAX,17,August,2017,52,female,Back Home,Home,,False,0
+FLXF19H13J,Alaska,SJC,JFK,4,March,2023,28,undisclosed,On vacation/Pleasure,Home,,True,141
+FLGYSJHSTR,Delta Airlines,JFK,PDX,9,December,2014,1,female,On vacation/Pleasure,Home,,True,596
+FLEIAANXI0,American Airlines,PDX,SJC,6,March,2018,9,male,On vacation/Pleasure,Friend/Family,,True,589
+FLF55R0N1L,Alaska,LAX,GDL,28,August,2014,35,male,On vacation/Pleasure,Friend/Family,,True,432
+FLTX6GKXFC,Aeromexico,GDL,LAX,2,March,2016,73,female,Back Home,Home,Car rental,False,0
+FLI185VSJ6,Aeromexico,LAX,JFK,3,October,2016,69,male,Back Home,Home,Mobility as a service,False,0
+FLN7GDTO9J,Volaris,SJC,JFK,31,May,2021,71,unspecified,Back Home,Home,,False,0
+FLREXVZJWA,Alaska,PDX,GDL,8,June,2017,38,male,Back Home,Home,,False,0
+FLOUXMEVMO,Aeromexico,PDX,SJC,12,August,2018,47,female,On vacation/Pleasure,Friend/Family,,True,117
+FLZ9Z6Z5FP,Volaris,GDL,JFK,16,December,2014,67,undisclosed,On vacation/Pleasure,Friend/Family,Pickup,False,0
+FLEUUTA6YQ,Volaris,JFK,LAX,28,February,2018,88,female,Business/Work,Hotel,Pickup,False,0
+FLK048HTRJ,Delta Airlines,JFK,SJC,7,July,2014,11,female,Back Home,Home,,False,0
+FL87HJPV6K,Aeromexico,GDL,JFK,25,October,2014,58,male,On vacation/Pleasure,Friend/Family,,True,473
+FL06PW9Q88,American Airlines,GDL,LAX,20,March,2016,78,undisclosed,Back Home,Home,,False,0
+FLSN2FYD5A,Volaris,SJC,JFK,4,December,2018,49,undisclosed,On vacation/Pleasure,Friend/Family,,True,303
+FLJEAFXVED,Alaska,PDX,JFK,15,March,2019,80,undisclosed,Business/Work,Hotel,,True,437
+FLRLO2KL2Y,Aeromexico,SJC,GDL,22,July,2020,37,unspecified,Business/Work,Hotel,Own car,False,0
+FLVQ9INOBG,Alaska,JFK,LAX,3,August,2021,70,female,Business/Work,Home,,True,135
+FLVGO7O0I9,American Airlines,SJC,PDX,1,August,2017,59,undisclosed,On vacation/Pleasure,Hotel,,True,133
+FLFRMZA71T,Alaska,LAX,GDL,13,July,2019,32,female,Business/Work,Hotel,,True,352
+FLE2EJEJBY,Alaska,LAX,JFK,25,January,2021,73,female,On vacation/Pleasure,Hotel,Own car,False,0
+FLQBXSWMG3,Aeromexico,GDL,JFK,21,April,2013,74,male,Back Home,Home,,False,0
+FLNAHV9TT2,Volaris,GDL,PDX,30,August,2014,7,male,Back Home,Home,,False,0
+FLQS70IVUE,American Airlines,LAX,PDX,10,March,2022,61,undisclosed,On vacation/Pleasure,Home,Mobility as a service,False,0
+FLYAL1WN3U,Aeromexico,LAX,GDL,4,December,2020,39,unspecified,Business/Work,Short-term homestay,,True,149
+FLZNQ3RCA9,Alaska,PDX,LAX,20,July,2020,14,undisclosed,Business/Work,Hotel,,True,288
+FLEKP7ZHYN,American Airlines,JFK,LAX,14,September,2015,54,female,Back Home,Home,Car rental,False,0
+FLY9DZQVM5,Volaris,GDL,PDX,22,July,2021,54,male,Back Home,Home,,False,0
+FLG75VNCT6,Alaska,GDL,PDX,4,September,2019,84,female,Back Home,Home,Pickup,False,0
+FLYCXQ2FRV,Alaska,JFK,PDX,8,June,2022,15,male,On vacation/Pleasure,Friend/Family,Pickup,False,0
+FL9IZQW186,Alaska,JFK,PDX,18,March,2020,67,undisclosed,Back Home,Home,,False,0
+FLNMYWXTVB,Delta Airlines,PDX,SJC,11,April,2018,2,unspecified,Back Home,Home,Pickup,False,0
+FL38JMNV4E,Delta Airlines,SJC,JFK,13,May,2017,39,male,Business/Work,Friend/Family,Own car,False,0
+FL00W4PNBI,Alaska,PDX,JFK,27,March,2017,67,unspecified,On vacation/Pleasure,Home,,True,711
+FLY1NVAXVW,Alaska,LAX,SJC,28,September,2018,36,female,Business/Work,Hotel,Public Transportation,False,0
+FLA7IJXJF4,Volaris,JFK,PDX,22,December,2022,66,undisclosed,Back Home,Home,Mobility as a service,False,0
+FLCZEKWOF5,Aeromexico,PDX,JFK,23,December,2020,40,undisclosed,On vacation/Pleasure,Hotel,,True,242
+FLL1DCS9CR,American Airlines,PDX,JFK,25,January,2022,70,female,On vacation/Pleasure,Home,,True,445
+FLXW09139E,Aeromexico,JFK,GDL,8,November,2018,41,undisclosed,On vacation/Pleasure,Short-term homestay,Airport cab,False,0
+FL4B0X4REF,American Airlines,LAX,SJC,7,February,2020,58,female,Back Home,Home,Airport cab,False,0
+FLXD8DX54D,Alaska,LAX,SJC,13,January,2014,44,undisclosed,On vacation/Pleasure,Friend/Family,,True,365
+FLY79QX8FQ,Volaris,JFK,LAX,27,March,2015,46,unspecified,Back Home,Home,Own car,False,0
+FLW5TMKUCE,American Airlines,SJC,PDX,1,October,2018,57,male,Business/Work,Home,Mobility as a service,False,0
+FLLGDXB4BK,Delta Airlines,SJC,GDL,24,November,2018,52,male,On vacation/Pleasure,Home,,True,267
+FLVWHPV3B8,Alaska,LAX,SJC,8,May,2018,71,undisclosed,Back Home,Home,,False,0
+FLRLQCSLWP,Aeromexico,SJC,JFK,20,January,2013,89,male,Business/Work,Friend/Family,,True,140
+FLPWY0SWBA,American Airlines,SJC,LAX,1,August,2015,68,male,Back Home,Home,,False,0
+FL2Q8OP2AD,Alaska,LAX,SJC,28,March,2017,82,male,Business/Work,Friend/Family,,True,155
+FLOCP8YR7U,American Airlines,JFK,PDX,17,May,2017,15,male,Back Home,Home,,False,0
+FL5CZSKZZ0,Alaska,JFK,PDX,5,September,2013,12,male,Business/Work,Hotel,Public Transportation,False,0
+FLSKKB1D9T,Aeromexico,LAX,PDX,30,December,2019,4,female,On vacation/Pleasure,Short-term homestay,Mobility as a service,False,0
+FLG3OAG9MO,Aeromexico,LAX,GDL,6,July,2013,26,undisclosed,Back Home,Home,,False,0
+FLWH0UZPJ1,Aeromexico,JFK,GDL,17,August,2015,60,unspecified,Business/Work,Home,Public Transportation,False,0
+FLKOXOOGYV,Volaris,JFK,LAX,11,January,2021,32,unspecified,Business/Work,Hotel,Airport cab,False,0
+FLBRVNBR4N,American Airlines,GDL,JFK,3,4,2016,14,female,On vacation/Pleasure,Friend/Family,,True,238
+FLVNCPT0HL,Volaris,LAX,JFK,13,September,2014,63,male,Back Home,Home,Public Transportation,False,0
+FLWYXD5EUT,Alaska,GDL,PDX,28,March,2016,87,male,On vacation/Pleasure,Home,,True,512
+FLUJN688HH,Aeromexico,GDL,SJC,16,November,2021,23,male,Business/Work,Home,Airport cab,False,0
+FL4VMNCMI0,American Airlines,GDL,SJC,24,March,2022,76,male,Business/Work,Hotel,Own car,False,0
+FLFPN5U8LU,Alaska,GDL,SJC,4,3,2014,12,undisclosed,Business/Work,Friend/Family,Own car,False,0
+FLWCV82EZF,Aeromexico,LAX,SJC,17,February,2014,33,female,On vacation/Pleasure,Hotel,Mobility as a service,False,0
+FL7YPC7LUX,American Airlines,SJC,JFK,26,December,2019,60,unspecified,On vacation/Pleasure,Hotel,,True,182
+FLD4J9YT6B,Volaris,SJC,JFK,18,October,2016,11,unspecified,Back Home,Home,Mobility as a service,False,0
+FLZGSEXDNS,American Airlines,PDX,GDL,20,July,2017,34,male,Business/Work,Hotel,Own car,False,0
+FL68AH0KTU,Volaris,GDL,SJC,4,November,2019,40,male,On vacation/Pleasure,Home,Airport cab,False,0
+FLK06PYYO6,Volaris,PDX,JFK,27,January,2019,43,unspecified,Business/Work,Hotel,Airport cab,False,0
+FLYTR1C2MC,Delta Airlines,GDL,LAX,6,March,2022,28,male,Business/Work,Hotel,,True,188
+FL4IL5NU3E,Aeromexico,LAX,GDL,7,December,2013,63,undisclosed,Back Home,Home,Mobility as a service,False,0
