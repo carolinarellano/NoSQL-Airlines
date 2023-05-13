@@ -1,3 +1,19 @@
+meses_dict = {
+    1: "Enero",
+    2: "Febrero",
+    3: "Marzo",
+    4: "Abril",
+    5: "Mayo",
+    6: "Junio",
+    7: "Julio",
+    8: "Agosto",
+    9: "Septiembre",
+    10: "Octubre",
+    11: "Noviembre",
+    12: "Diciembre"
+}
+
+
 def print_airlines():
     airlines = ["American Airlines", "Delta Airlines", "Alaska", "Aeromexico", "Volaris"]
     for i in range(len(airlines)):
@@ -78,6 +94,10 @@ def print_all():
     print("\n\033[1m\033[4mTransit options:\033[0m", end=" ")
     print_transits()
     print('\n')
+
+
+
+
 
 
 

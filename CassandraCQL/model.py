@@ -3,6 +3,9 @@ import logging
 from tabulate import tabulate
 from colorama import init, Fore, Style
 init()
+import statistics
+import collections
+import options
 
 # Set logger
 log = logging.getLogger()
@@ -28,7 +31,7 @@ CREATE TABLE IF NOT EXISTS airport_wait_time (
   transit text,
   connection text,
   wait int,
-  PRIMARY KEY ((airline, de, hacia, year, month, day), age, gender, reason, stay, transit, connection)
+  PRIMARY KEY ((airline, month,de, hacia, year, day), age, gender, reason, stay, transit, connection)
 ) WITH CLUSTERING ORDER BY (age DESC, gender DESC, reason DESC, stay DESC, transit DESC, connection DESC);
 '''
 CREATE_INDEXES = '''
@@ -38,6 +41,13 @@ CREATE_INDEXES = '''
 CREATE_INDEXES2 = '''
     CREATE INDEX IF NOT EXISTS year_index ON airport_wait_time (year);
     '''
+
+MAIN_QUERY = '''
+    SELECT airline, month
+    FROM airport_wait_time
+    WHERE year = ? AND airline = ?
+    ALLOW FILTERING;
+'''
 
 
 
@@ -540,3 +550,20 @@ def select_by_percentaje_airline_date(session, airline, day, month, year):
     filtered_count_formatted = f"{Fore.WHITE}{Style.BRIGHT}{filtered_count}{Style.RESET_ALL}"
     percentage_value_formatted = f"{Fore.WHITE}{Style.BRIGHT}{percentage:.2f}%{Style.RESET_ALL}"
     print(tabulate([[flights_formatted, filtered_count_formatted], [percentage_formatted, percentage_value_formatted]],tablefmt='fancy_grid'))
+
+def select_by_query_main(session, year_param, airline):
+    log.info(f"main query executed")
+    stmt = session.prepare(MAIN_QUERY)
+    rows = session.execute(stmt, [year_param, airline])
+    data = []
+    for row in rows:
+        data.append(row.month)
+    frequencies = collections.Counter(data)
+    mode = max(frequencies, key=frequencies.get)
+    year_paramf = f"{Fore.YELLOW}{Style.BRIGHT}{year_param}{Style.RESET_ALL}"
+    nombre_de_mes = options.meses_dict[mode]
+    nombre_formatted = f"{Fore.YELLOW}{Style.BRIGHT}{nombre_de_mes}{Style.RESET_ALL}"
+    data_to_print = [[year_paramf, nombre_formatted, frequencies[mode]]]
+    print(f"\nMonth with most flights for {airline}\n")
+    print(tabulate(data_to_print, headers=['Year', 'Month', 'Number of flights'], tablefmt='orgtbl'))
+
