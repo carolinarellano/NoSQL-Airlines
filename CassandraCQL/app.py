@@ -47,7 +47,8 @@ def print_menu():
         19: "Show flights by percentage for connecting flights",
         20: "Show flights by percentage for non-connecting flights",
         21: "Show flights by percentage for a specific airline and date",
-        22: "Exit",
+        22: "Show better month to hire on specific airline and year",
+        23: "Exit",
     }
     for key in mm_options.keys():
         print(key, '--', mm_options[key])
@@ -199,8 +200,15 @@ def main():
             month = int(month)
             year = int(year)
             model.select_by_percentaje_airline_date(session,airline,day,month,year)
-        
+
         elif option == 22:
+            year = int(input('Enter year: '))
+
+            options.print_airlines()
+            airline = input('Enter Airline: ')
+            model.select_by_query_main(session,year,airline)
+
+        elif option == 23:
             print("Exiting...")
             break;
 
